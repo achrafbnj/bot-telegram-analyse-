@@ -1,33 +1,3 @@
-import os
-import subprocess
-
-# Check if Cargo.toml exists in the specified directory or any parent directory
-def find_cargo_toml(directory):
-    current_dir = directory
-    while current_dir != '/':
-        if os.path.exists(os.path.join(current_dir, 'Cargo.toml')):
-            return current_dir
-        current_dir = os.path.dirname(current_dir)
-    return None
-
-# Specify the directory where Cargo.toml should be located
-project_directory = '/opt/render/project/src'
-
-# Find the directory containing Cargo.toml
-cargo_toml_dir = find_cargo_toml(project_directory)
-
-if cargo_toml_dir:
-    print(f"Cargo.toml found in directory: {cargo_toml_dir}")
-    # Run Cargo build command
-    os.chdir(cargo_toml_dir)
-    build_process = subprocess.Popen(['cargo', 'build'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, stderr = build_process.communicate()
-    if build_process.returncode != 0:
-        print(f"Error: Failed to build the project.\n{stderr.decode()}")
-    else:
-        print("Build successful!")
-else:
-    print("Error: Could not find Cargo.toml in the specified directory or any parent directory.")
 [package]
 name = "my_project"
 version = "0.1.0"
