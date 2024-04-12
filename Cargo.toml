@@ -28,3 +28,10 @@ if cargo_toml_dir:
         print("Build successful!")
 else:
     print("Error: Could not find Cargo.toml in the specified directory or any parent directory.")
+[package]
+name = "my_project"
+version = "0.1.0"
+authors = ["Achraf Benjana <achrafdrs03@outlook.com>"]
+
+[dependencies]
+# Add your dependencies here
