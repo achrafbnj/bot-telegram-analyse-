@@ -5,3 +5,11 @@ authors = ["Achraf Benjana <achrafdrs03@outlook.com>"]
 
 [dependencies]
 # Add your dependencies here
+
+[[bin]]
+name = "my_executable"
+path = "src/main.rs"
+
+[[lib]]
+name = "my_library"
+path = "src/lib.rs"
