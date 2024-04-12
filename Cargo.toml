@@ -20,6 +20,11 @@ if cargo_toml_dir:
     print(f"Cargo.toml found in directory: {cargo_toml_dir}")
     # Run Cargo build command
     os.chdir(cargo_toml_dir)
-    subprocess.run(['cargo', 'build'])
+    build_process = subprocess.Popen(['cargo', 'build'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = build_process.communicate()
+    if build_process.returncode != 0:
+        print(f"Error: Failed to build the project.\n{stderr.decode()}")
+    else:
+        print("Build successful!")
 else:
     print("Error: Could not find Cargo.toml in the specified directory or any parent directory.")
